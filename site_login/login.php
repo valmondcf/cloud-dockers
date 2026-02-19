@@ -5,7 +5,7 @@ require "./db.php";  #connexion bdd
 $error = "";  #message d'erreur si la connexion échoue
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){   #Vérifie si le formulaire a été envoyé en POST
-   $mail =  trim($_POST["mail"]);  #Récupère l’email envoyé
+   $mail =  trim($_POST["mail"]);  #Récupère l’email envoyé, trim enlève les espaces
    $password = $_POST["password"];   #Récupère le mot de passe envoyé
 
    $stmt = $pdo->prepare("SELECT * FROM users WHERE mail = ?");   #Cherche l’utilisateur dont le mail correspond
@@ -26,10 +26,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){   #Vérifie si le formulaire a été 
 
 <html>
     <head>
-
+        <link rel="stylesheet" href="style.css">
     </head>
-
     <body>
+    <div class="box">
         <form method="post">
             <label>mail</label>
             <input type="mail" name="mail" required />
@@ -41,6 +41,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){   #Vérifie si le formulaire a été 
             <br/>
             <button type="submit" >confirmer</button>
         </form>
+    </div>
     </body>
 
 </html>
